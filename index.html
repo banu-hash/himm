@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Flower For You 🌸💕</title>
+    <title>A my love For You 🌸💕</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -29,7 +29,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Falling Petals */
         .petal {
             position: absolute;
             font-size: 20px;
@@ -243,152 +242,22 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="title">For You 🌸💕</h1>
-        
-        <p class="message">I can't give you real flowers right now...</p>
-        <p class="message">So here's something <span style="color: #ff4d6d; font-weight: 600;">special</span> 💐✨</p>
 
-        <div id="flower" onclick="growGarden()">🌹</div>
+<script>
+    let correctPassword = "2319@2006";
+    let userPassword = prompt("Enter password to see your surprise 💖");
 
-        <button class="give-btn" onclick="giveFlower()">
-            <i class="fas fa-gift"></i> Give Another Flower 💖
-        </button>
+    if (userPassword !== correctPassword) {
+        document.body.innerHTML = `
+            <div style="display:flex;justify-content:center;align-items:center;height:100vh;
+            font-family:Poppins;text-align:center;background:#ffe6f0;">
+                <div>
+                    <h1 style="color:#ff4d6d;">Access Denied 💔</h1>
+                    <p>Oops! Wrong password 😢</p>
+                </div>
+            </div>
+        `;
+    }
+</script>
 
-        <button class="surprise-btn" onclick="showSurprise()">
-            🎁 Open Surprise Gift
-        </button>
-
-        <p id="message"></p>
-
-        <!-- Secret Flower Garden -->
-        <div id="garden" class="garden">
-            <h2 style="color: #ff4d6d; font-family: 'Dancing Script', cursive; font-size: 2.5rem;">
-                🌱 Your Personal Flower Garden 💕
-            </h2>
-            <p>Click the flowers to make them grow! 🌸</p>
-            <div class="garden-grid" id="gardenGrid"></div>
-        </div>
-    </div>
-
-    <script>
-        let flowerCount = 0;
-        const flowers = ["🌹", "🌸", "🌼", "🌷", "💐", "🌺", "🌻", "🪷", "🌺", "🌴"];
-        const messages = [
-            "This flower is just for you 💕",
-            "You're amazing! 🌟",
-            "Sending you all my love 💖",
-            "You make my heart bloom 🌸",
-            "Special flower for a special person ✨",
-            "Every petal is for you 💐",
-            "You're my favorite flower 🌹",
-            "Love grows where you go 💕"
-        ];
-
-        function createPetal() {
-            const petal = document.createElement('div');
-            petal.className = 'petal';
-            petal.innerHTML = flowers[Math.floor(Math.floor(Math.random() * flowers.length))];
-            petal.style.left = Math.random() * 100 + 'vw';
-            petal.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            petal.style.animationDelay = Math.random() * 2 + 's';
-            document.body.appendChild(petal);
-
-            setTimeout(() => {
-                petal.remove();
-            }, 5000);
-        }
-
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.innerHTML = '💖';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.top = '50vh';
-            document.body.appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 2000);
-        }
-
-        function giveFlower() {
-            flowerCount++;
-            
-            // Random flower
-            const randomFlower = flowers[Math.floor(Math.random() * flowers.length)];
-            document.getElementById("flower").innerHTML = randomFlower;
-
-            // Random message
-            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-            document.getElementById("message").innerHTML = randomMessage;
-
-            // Effects
-            for(let i = 0; i < 5; i++) {
-                setTimeout(createPetal, i * 100);
-                setTimeout(createHeart, i * 150);
-            }
-
-            // Shake effect
-            const flower = document.getElementById("flower");
-            flower.style.animation = 'none';
-            setTimeout(() => {
-                flower.style.animation = 'float 3s ease-in-out infinite, spin 20s linear infinite';
-            }, 100);
-        }
-
-        function showSurprise() {
-            const messages = [
-                "You're the best thing that happened to me! 💕",
-                "I love you more than all the flowers in the world 🌸🌸🌸",
-                "You make every day beautiful 💖",
-                "Forever and always yours ✨💕"
-            ];
-            
-            alert(messages[Math.floor(Math.random() * messages.length)]);
-            
-            // Trigger lots of petals
-            for(let i = 0; i < 20; i++) {
-                setTimeout(createPetal, i * 50);
-            }
-        }
-
-        function growGarden() {
-            const garden = document.getElementById("garden");
-            garden.classList.add("active");
-            
-            const grid = document.getElementById("gardenGrid");
-            grid.innerHTML = "";
-            
-            for(let i = 0; i < 12; i++) {
-                const flowerDiv = document.createElement("div");
-                flowerDiv.className = "garden-flower";
-                flowerDiv.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
-                flowerDiv.onclick = () => {
-                    flowerDiv.style.transform = "scale(1.5) rotate(360deg)";
-                    flowerDiv.style.fontSize = "80px";
-                    setTimeout(() => {
-                        flowerDiv.style.transform = "scale(1)";
-                        flowerDiv.style.fontSize = "60px";
-                    }, 500);
-                };
-                grid.appendChild(flowerDiv);
-            }
-        }
-
-        // Auto-start with first flower
-        window.onload = function() {
-            setInterval(createPetal, 3000);
-            document.getElementById("message").innerHTML = "Click anywhere to start the magic! ✨";
-        };
-
-        // Click anywhere for petals
-        document.addEventListener('click', function(e) {
-            if(e.target.tagName !== 'BUTTON') {
-                createPetal();
-                createHeart();
-            }
-        });
-    </script>
-</body>
-</html>
+<div class="container">
